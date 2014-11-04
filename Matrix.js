@@ -8,8 +8,8 @@ var Matrix = (function(context, buffers) {
 		this.impulseIndex = 0;
 		this.semitoneRatio = Math.pow(2, 1/12); // multiplier for chromatic scaling
 		this.root = 69; // root key is A440 by default
-		this.rampMin = 0.00001; // ensure fine scaling for ramping functions
-		this.rampMax = 1 - rampMin;
+		this.compressor = context.createDynamicsCompressor();
+		this.
 
 		this.init();
 	}
