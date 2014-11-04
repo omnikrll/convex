@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+
+  <title>convex</title>
+
+  <link rel="stylesheet" type="text/css" href="convex.css">
+
+</head>
+<body>
+  
+
+  <div class="content">
+    <div class="header">
+      <h1>convex</h1>
+      <p>a simple sampling synth built using the web audio api</p>
+    </div>
+
+    <div class="modules">
+      <div class="module source">
+        <h4>Source</h4>
+        <select id="carrierMenu" onchange="toggleCarrier(this);">
+        </select>
+      </div>
+
+      <div class="module impulse">
+        <h4>Impulse</h4>
+        <select id="modulatorMenu" onchange="toggleConvolver(this);">
+        </select>
+      </div>
+
+      <div class="module filter">
+        <h4>Filter</h4>
+        <div style="margin-bottom: 1em;">
+          <h5>type</h5>
+          <select id="filterTypePicker" onchange="filterType(this);">
+            <option selected="selected">Lowpass</option>
+            <option>Highpass</option>
+            <option>Bandpass</option>
+            <option>Low Shelf</option>
+            <option>High Shelf</option>
+            <option>Peaking</option>
+            <option>Notch</option>
+            <option>Allpass</option>
+          </select>
+        </div>
+        <div class="sliders">
+          <div class="input-slider">
+            <input id="filterFreqInput" min="0" max="1" step="0.01" value="1" oninput="filterFrequency(this);" type="range">
+            <h5>freq</h5>
+          </div>
+          <div class="input-slider">
+            <input id="filterQInput" min="0" max="1" step="0.01" value="0" oninput="filterQ(this);" type="range">
+            <h5>q</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="module output">
+        <h4>level</h4>
+        <div class="sliders">
+          <div class="input-slider">
+            <input id="fadeInLevel" min="0" max="20000" value="0" oninput="updatefadeIn(this);" type="range">
+            <h5>attack</h5>
+            <!-- <h5><span id="fade-in">0</span> ms</h5> -->
+          </div>
+          <div class="input-slider">
+            <input id="fadeOutLevel" min="0" max="20000" value="0" oninput="updatefadeOut(this);" type="range">
+            <h5>release</h5>
+            <!-- <h5><span id="fade-out">0</span> ms</h5> -->
+          </div>
+          <div class="input-slider">
+            <input id="masterVolumeInput" min="0" max="100" value="100" oninput="masterVolumeLvl(this);" type="range">
+            <h5>output</h5>
+            <!-- <h5><span id="volume-level">100</span>%</h5> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="keyboard-map" class="map-area">
+      <div id="row1" class="row">
+        <div class="ascii" id="ascii_87"><span>w</span></div>
+        <div class="ascii" id="ascii_69"><span>e</span></div>
+        <div class="ascii" style="visibility: hidden;"></div>
+        <div class="ascii" id="ascii_84"><span>t</span></div>
+        <div class="ascii" id="ascii_89"><span>y</span></div>
+        <div class="ascii" id="ascii_85"><span>u</span></div>
+      </div>
+
+      <div id="row2" class="row">
+        <div class="ascii" id="ascii_65"><span>a</span></div>
+        <div class="ascii" id="ascii_83"><span>s</span></div>
+        <div class="ascii" id="ascii_68"><span>d</span></div>
+        <div class="ascii" id="ascii_70"><span>f</span></div>
+        <div class="ascii" id="ascii_71"><span>g</span></div>
+        <div class="ascii" id="ascii_72"><span>h</span></div>
+        <div class="ascii" id="ascii_74"><span>j</span></div>
+        <div class="ascii" id="ascii_75"><span>k</span></div>
+      </div>
+
+      <div class="octave-display">
+        <span class="octave-inc" id="octave-down"> &lt; </span>
+        <span>Current Octave: C<span id="octave-val">4</span></span>
+        <span class="octave-inc" id="octave-up"> &gt; </span>
+      </div>
+    </div>
+  </div>
+  <script src="convex.js"></script>
+
+
+</body></html>
