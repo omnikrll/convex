@@ -19,13 +19,13 @@
     <div class="modules">
       <div class="module source">
         <h4>Source</h4>
-        <select id="carrierMenu" onchange="toggleCarrier(this);">
+        <select id="carrierMenu">
         </select>
       </div>
 
       <div class="module impulse">
         <h4>Impulse</h4>
-        <select id="modulatorMenu" onchange="toggleConvolver(this);">
+        <select id="modulatorMenu">
         </select>
       </div>
 
@@ -33,7 +33,7 @@
         <h4>Filter</h4>
         <div style="margin-bottom: 1em;">
           <h5>type</h5>
-          <select id="filterTypePicker" onchange="filterType(this);">
+          <select id="filterTypePicker">
             <option selected="selected">Lowpass</option>
             <option>Highpass</option>
             <option>Bandpass</option>
@@ -46,11 +46,11 @@
         </div>
         <div class="sliders">
           <div class="input-slider">
-            <input id="filterFreqInput" min="0" max="1" step="0.01" value="1" oninput="filterFrequency(this);" type="range">
+            <input id="filterFreqInput" min="0" max="1" step="0.01" value="1" type="range">
             <h5>freq</h5>
           </div>
           <div class="input-slider">
-            <input id="filterQInput" min="0" max="1" step="0.01" value="0" oninput="filterQ(this);" type="range">
+            <input id="filterQInput" min="0" max="1" step="0.01" value="0" type="range">
             <h5>q</h5>
           </div>
         </div>
@@ -60,17 +60,17 @@
         <h4>level</h4>
         <div class="sliders">
           <div class="input-slider">
-            <input id="fadeInLevel" min="0" max="20000" value="0" oninput="updatefadeIn(this);" type="range">
+            <input id="fadeInLevel" min="0" max="20000" value="0" type="range">
             <h5>attack</h5>
             <!-- <h5><span id="fade-in">0</span> ms</h5> -->
           </div>
           <div class="input-slider">
-            <input id="fadeOutLevel" min="0" max="20000" value="0" oninput="updatefadeOut(this);" type="range">
+            <input id="fadeOutLevel" min="0" max="20000" value="0" type="range">
             <h5>release</h5>
             <!-- <h5><span id="fade-out">0</span> ms</h5> -->
           </div>
           <div class="input-slider">
-            <input id="masterVolumeInput" min="0" max="100" value="100" oninput="masterVolumeLvl(this);" type="range">
+            <input id="masterVolumeInput" min="0" max="100" value="100" type="range">
             <h5>output</h5>
             <!-- <h5><span id="volume-level">100</span>%</h5> -->
           </div>
@@ -107,6 +107,5 @@
     </div>
   </div>
   <script src="convex.js"></script>
-
-
-</body></html>
+</body>
+</html>
