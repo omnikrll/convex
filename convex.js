@@ -8,8 +8,7 @@ var buffers = [];
 var carrierMenu = document.getElementById('carrierMenu');
 var modulatorMenu = document.getElementById('modulatorMenu');
 
-//samples to be loaded
-
+//samples to be loaded are in samples.js now
 
 // define uncasted matrix node names:
 var carrier; // bufferSource for sample playback
