@@ -205,19 +205,20 @@ function createMatrix(buffers) {
 
   // cast nodes
   carrier = context.createBufferSource();
-  carrierGain = context.createGainNode();
+  carrierGain = context.createGain();
   convolver = context.createConvolver();
   filter = context.createBiquadFilter();
   aaFilter = context.createBiquadFilter();
   compressor = context.createDynamicsCompressor();
-  masterVolume = context.createGainNode();
+  masterVolume = context.createGain();
 
 
   // set up carrier node
   carrier.buffer = buffers[carrierIndex];
   carrier.loop = true;
+  carrier.isPlaying = false;
   carrier.connect(aaFilter);
-  aaFilter.type = 0;
+  aaFilter.type = 'lowpass';
   aaFilter.frequency.value = 22050;
   aaFilter.connect(carrierGain);
 
@@ -231,7 +232,7 @@ function createMatrix(buffers) {
   carrierGain.connect(filter);
 
   // set up filter
-  filter.type = 0;
+  filter.type = 'lowpass';
   filter.frequency.value = 22050;
   filter.connect(compressor);
 
@@ -278,7 +279,7 @@ function filterQ(element) {
 
 // change filter type
 function filterType(element) {
-  filter.type = element.selectedIndex;
+  filter.type = element.value;
 }
 
 // master volume fader
@@ -289,19 +290,19 @@ function masterVolumeLvl(element) {
 };
 
 function playSound(note) {
+  if (carrier.isPlaying) stopSound();
   carrier.buffer = buffers[carrierIndex];
   if (typeof note == 'number') {
     carrier.playbackRate.value = midiToPitch(note);
   } else {
     carrier.playbackRate.value = noteToMidi(note[0], note[1]);
   }
-  if (carrier.playbackState != 2) {
-    carrier.start(0);
-  }
+  carrier.start(0);
+  carrier.isPlaying = true;
 }
 
 function fadeIn(note, time) {
-  time = (time === undefined) ? 0 : parseInt(document.getElementById("fadeInLevel").value);
+  time = (time === undefined) ? o : parseInt(document.getElementById("fadeInLevel").value);
 
   var level = masterVolume.gain.value = 0;
   playSound(note);
@@ -340,6 +341,7 @@ function fadeOut(time) {
 }
 
 function stopSound() {
+  carrier.isPlaying = false;
   carrier.stop(0);
   carrier = context.createBufferSource();
   carrier.loop = true;
@@ -365,7 +367,7 @@ window.addEventListener('keydown', function(e) {
 }, true);
 
 var noteKeys = [65, 87, 83, 69, 68, 70, 84, 71, 89, 72, 85, 74, 75];
-var sysKeys = [16, 17, 18, 91] // shift, ctrl, opt, command 
+var sysKeys = [16, 17, 18, 91] // exclude keys pressed when holding shift, ctrl, opt, or command keys 
 
 var prevCode;
 function asciiHandler(e) {

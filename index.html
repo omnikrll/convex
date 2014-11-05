@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html><head>
-<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<html>
+<head>
 
   <title>convex</title>
 
@@ -8,7 +8,12 @@
 
 </head>
 <body>
-  
+  <div id="loading" class="loading">
+    <div class="spinner">
+      <img src="loading-spinner.gif"/>
+      <h1>loading...</h1>
+    </div>
+  </div>
 
   <div class="content">
     <div class="header">
@@ -26,6 +31,7 @@
       <div class="module impulse">
         <h4>Impulse</h4>
         <select id="modulatorMenu" onchange="toggleConvolver(this);">
+          <option> --- </option>
         </select>
       </div>
 
@@ -34,23 +40,23 @@
         <div style="margin-bottom: 1em;">
           <h5>type</h5>
           <select id="filterTypePicker" onchange="filterType(this);">
-            <option selected="selected">Lowpass</option>
-            <option>Highpass</option>
-            <option>Bandpass</option>
-            <option>Low Shelf</option>
-            <option>High Shelf</option>
-            <option>Peaking</option>
-            <option>Notch</option>
-            <option>Allpass</option>
+            <option value="lowpass">Lowpass</option>
+            <option value="highpass">Highpass</option>
+            <option value="bandpass">Bandpass</option>
+            <option value="lowshelf">Low Shelf</option>
+            <option value="highshelf">High Shelf</option>
+            <option value="peaking">Peaking</option>
+            <option value="notch">Notch</option>
+            <option value="allpass">Allpass</option>
           </select>
         </div>
         <div class="sliders">
           <div class="input-slider">
-            <input id="filterFreqInput" min="0" max="1" step="0.01" value="1" oninput="filterFrequency(this);" type="range">
+            <input id="filterFreqInput" type="range" min="0" max="1" step="0.01" value="1" oninput="filterFrequency(this);">
             <h5>freq</h5>
           </div>
           <div class="input-slider">
-            <input id="filterQInput" min="0" max="1" step="0.01" value="0" oninput="filterQ(this);" type="range">
+            <input id="filterQInput" type="range" min="0" max="1" step="0.01" value="0" oninput="filterQ(this);">
             <h5>q</h5>
           </div>
         </div>
@@ -60,17 +66,17 @@
         <h4>level</h4>
         <div class="sliders">
           <div class="input-slider">
-            <input id="fadeInLevel" min="0" max="20000" value="0" oninput="updatefadeIn(this);" type="range">
+            <input id="fadeInLevel" type="range" min="0" max="20000" value="0" oninput="updatefadeIn(this);">
             <h5>attack</h5>
             <!-- <h5><span id="fade-in">0</span> ms</h5> -->
           </div>
           <div class="input-slider">
-            <input id="fadeOutLevel" min="0" max="20000" value="0" oninput="updatefadeOut(this);" type="range">
+            <input id="fadeOutLevel" type="range" min="0" max="20000" value="0" oninput="updatefadeOut(this);">
             <h5>release</h5>
             <!-- <h5><span id="fade-out">0</span> ms</h5> -->
           </div>
           <div class="input-slider">
-            <input id="masterVolumeInput" min="0" max="100" value="100" oninput="masterVolumeLvl(this);" type="range">
+            <input id="masterVolumeInput" type="range" min="0" max="100" value="100" oninput="masterVolumeLvl(this);">
             <h5>output</h5>
             <!-- <h5><span id="volume-level">100</span>%</h5> -->
           </div>
@@ -100,13 +106,13 @@
       </div>
 
       <div class="octave-display">
-        <span class="octave-inc" id="octave-down"> &lt; </span>
+        <span class="octave-inc" id="octave-down"> < </span>
         <span>Current Octave: C<span id="octave-val">4</span></span>
-        <span class="octave-inc" id="octave-up"> &gt; </span>
+        <span class="octave-inc" id="octave-up"> > </span>
       </div>
     </div>
   </div>
   <script src="convex.js"></script>
 
-
-</body></html>
+</body>
+</html>
