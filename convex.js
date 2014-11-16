@@ -302,7 +302,7 @@ function playSound(note) {
 }
 
 function fadeIn(note, time) {
-  time = (time === undefined) ? o : parseInt(document.getElementById("fadeInLevel").value);
+  time = (time === undefined) ? 0 : parseInt(document.getElementById("fadeInLevel").value);
 
   var level = masterVolume.gain.value = 0;
   playSound(note);
